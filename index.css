@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: ;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./images/nature-background.jpg");
+}
