@@ -17,7 +17,13 @@ const handleForm = (event) => {
                     .then(response => response.json())
                     .then(data => {
                         console.log(data)
-                        console.log(data)
+                        const dailyWeather = data.daily;
+                        for (let day of dailyWeather) {
+                            console.log(day)
+                            const unixDate = day.dt;
+                            const dateJSconversion = new Date(unixDate*1000);
+                            const date = dateJSconversion.toLocaleDateString("en-BE");
+                        }
                     })
                 
             })
