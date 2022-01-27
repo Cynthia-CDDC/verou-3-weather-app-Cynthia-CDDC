@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    /*background-image: url("./images/nature-background.jpg");*/
+}
+.daily {
+    width: fit-content;
+    list-style-type: none;
+    border-style: solid;
+    border-radius: 25px;
+    padding-right: 25px;
+}
+#header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+.day {
+    padding-right: 8px;
+}
+.temp {
+    line-height: 30px;
+}
+#body {
+    padding-left: 25px;
+    padding-bottom: 20px;
+}

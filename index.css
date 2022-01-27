@@ -1,9 +1,48 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
+
 body {
-    width: 100vw;
-    height: 100vh;
-    /*background-image: url("./images/nature-background.jpg");*/
+  width: 100vw;
+  height: 100vh;
+  /*background-image: url("./images/nature-background.jpg");*/
+}
+.form {
+  line-height: 30px;
+}
+.daily {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  list-style-type: none;
+  border-style: solid;
+  border-radius: 25px;
+}
+#header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+.day {
+  padding-right: 8px;
+}
+.temp {
+  line-height: 30px;
+}
+#body {
+  padding-left: 8px;
+  padding-bottom: 5px;
 }

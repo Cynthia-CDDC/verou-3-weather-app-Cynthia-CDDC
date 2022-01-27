@@ -1,12 +1,17 @@
 //TODO: make webpage responsive
+//TODO: add style and design to page
 import Data from "./config.js";
-
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const form = document.querySelector(".cityfield");
 console.log(form)
 const submitBtn = document.querySelector("#submitcity");
-
 // Add city for API call
 const handleForm = (event) => {
+    //to only display the new data, remove childelement(ul) from parenthtml element
+    let mainParent = document.querySelector('#daily');
+    while (mainParent.firstChild) {
+        mainParent.removeChild(mainParent.firstChild);
+    }
     event.preventDefault();
     // Geocode API call to get the coordinates needed for weather API
     const getCoordinates = fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +form.value + "&appid=" + Data.key)
@@ -31,65 +36,71 @@ const handleForm = (event) => {
                     
                     for (let day of dailyWeather5) {
                         //TODO: try with html template literal. Don't forget ; after closing backtick?
-                        const olList = document.createElement("ol");
-                        olList.className = "daily";
-                        mainHtml.appendChild(olList);
+                        const ulList = document.createElement("ul");
+                        ulList.className = "daily";
+                        mainHtml.appendChild(ulList);
 
-                        const unixDate = day.dt;
-                        const dateJSconversion = new Date(unixDate*1000);
-                        const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
-                        console.log(dateDDMMYY)
-                        const date = document.createElement("li");
-                        date.className = "date";
-                        date.innerHTML = dateDDMMYY;
-                        olList.appendChild(date);
-
-                        //TODO: round the temperature-numbers
-                        //TODO: create letter day-string form date data
                         //TODO: transform wind-degrees in compass (letters)
                         const weatherIcon = day.weather[0].icon;
                         const iconLi = document.createElement("li");
                         iconLi.className = "weather-icon";
-                        olList.appendChild(iconLi);
+                        ulList.appendChild(iconLi);
                         const iconImg = document.createElement('img')
                         iconImg.src = "http://openweathermap.org/img/wn/" + weatherIcon +"@2x.png";
                         iconLi.appendChild(iconImg);
+
+                        const unixDate = day.dt;
+                        const dateJSconversion = new Date(unixDate*1000);
+                        console.log(dateJSconversion.getDay());
+                        const weekDay = dateJSconversion.getDay();
+                        const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
+                        console.log(dateDDMMYY)
+                    
+                        const date = document.createElement("li");
+                        date.className = "date";
+                        date.innerHTML = dateDDMMYY;
+                        ulList.appendChild(date);
                         
+                        const dayOfWeek = document.createElement("li");
+                        dayOfWeek.className = "day";
+                        dayOfWeek.innerHTML = weekdays[weekDay];
+                        ulList.appendChild(dayOfWeek);
+
                         const minTemp = day.temp.min;
                         const minTmp= document.createElement("li");
                         minTmp.className = "min-temp";
-                        minTmp.innerHTML = minTemp;
-                        olList.appendChild(minTmp);
+                        minTmp.innerHTML = Math.round(minTemp) + "° min";
+                        ulList.appendChild(minTmp);
 
                         const maxTemp = day.temp.max;
                         const maxTmp= document.createElement("li");
                         maxTmp.className = "max-temp";
-                        maxTmp.innerHTML = maxTemp;
-                        olList.appendChild(maxTmp);
+                        maxTmp.innerHTML = Math.round(maxTemp) + "° max";
+                        ulList.appendChild(maxTmp);
 
                         const humidity = day.humidity;
                         const humid = document.createElement("li");
                         humid.className = "humidity";
-                        humid.innerHTML = humidity;
-                        olList.appendChild(humid);
+                        humid.innerHTML = humidity + "% humidity";
+                        ulList.appendChild(humid);
 
                         const windSpeed = day.wind_speed;
                         const windSp = document.createElement("li");
                         windSp.className = "wind-speed";
-                        windSp.innerHTML = windSpeed;
-                        olList.appendChild(windSp);
+                        windSp.innerHTML = windSpeed + "km/h wind";
+                        ulList.appendChild(windSp);
 
                         const windDirectionDegree = day.wind_deg;
                         const windDirection= document.createElement("li");
                         windDirection.className = "wind-direction";
-                        windDirection.innerHTML = windDirectionDegree;
-                        olList.appendChild(windDirection);
+                        windDirection.innerHTML = windDirectionDegree + "wind.d.";
+                        ulList.appendChild(windDirection);
 
                         const precipitationProb = day.pop;
                         const precipitationPr= document.createElement("li");
                         precipitationPr.className = "precipitation-prob";
-                        precipitationPr.innerHTML = precipitationProb;
-                        olList.appendChild(precipitationPr);
+                        precipitationPr.innerHTML = precipitationProb + "%" + " precip. Prob.";
+                        ulList.appendChild(precipitationPr);
                     }
                 })
             
