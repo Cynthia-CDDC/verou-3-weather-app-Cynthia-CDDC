@@ -8,7 +8,7 @@ const submitBtn = document.querySelector("#submitcity");
 // Add city for API call
 const handleForm = (event) => {
     //to only display the new data, remove childelement(ul) from parenthtml element
-    let mainParent = document.querySelector('#daily');
+    let mainParent = document.querySelector('#card');
     while (mainParent.firstChild) {
         mainParent.removeChild(mainParent.firstChild);
     }
@@ -32,21 +32,27 @@ const handleForm = (event) => {
                     const dailyWeather5 = dailyWeather8.slice(0, 5);//takes the first 5 objects of the array above starting from position 0.
                     console.log(dailyWeather5)
 
-                    const mainHtml = document.querySelector('#daily');
+                    const mainHtml = document.querySelector('#card');
                     
                     for (let day of dailyWeather5) {
                         //TODO: try with html template literal. Don't forget ; after closing backtick?
                         const ulList = document.createElement("ul");
-                        ulList.className = "daily";
+                        ulList.className = "daily-card";
                         mainHtml.appendChild(ulList);
+
+                        const firstSection = document.createElement("section");
+                        firstSection.id = "card-head";
+                        ulList.appendChild(firstSection);
 
                         //TODO: transform wind-degrees in compass (letters)
                         const weatherIcon = day.weather[0].icon;
                         const iconLi = document.createElement("li");
                         iconLi.className = "weather-icon";
-                        ulList.appendChild(iconLi);
+                        firstSection.appendChild(iconLi);
+
                         const iconImg = document.createElement('img')
                         iconImg.src = "http://openweathermap.org/img/wn/" + weatherIcon +"@2x.png";
+                        iconImg.className = "icon";
                         iconLi.appendChild(iconImg);
 
                         const unixDate = day.dt;
@@ -55,52 +61,44 @@ const handleForm = (event) => {
                         const weekDay = dateJSconversion.getDay();
                         const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
                         console.log(dateDDMMYY)
-                    
-                        const date = document.createElement("li");
-                        date.className = "date";
-                        date.innerHTML = dateDDMMYY;
-                        ulList.appendChild(date);
-                        
-                        const dayOfWeek = document.createElement("li");
-                        dayOfWeek.className = "day";
-                        dayOfWeek.innerHTML = weekdays[weekDay];
-                        ulList.appendChild(dayOfWeek);
-
+                        const dayOfWeek = weekdays[weekDay];
+                        const date = dateDDMMYY;
                         const minTemp = day.temp.min;
-                        const minTmp= document.createElement("li");
-                        minTmp.className = "min-temp";
-                        minTmp.innerHTML = Math.round(minTemp) + "° min";
-                        ulList.appendChild(minTmp);
-
                         const maxTemp = day.temp.max;
-                        const maxTmp= document.createElement("li");
-                        maxTmp.className = "max-temp";
-                        maxTmp.innerHTML = Math.round(maxTemp) + "° max";
-                        ulList.appendChild(maxTmp);
+
+                        const cardDayandTemp = document.createElement("li");
+                        cardDayandTemp.className = "day";
+                        cardDayandTemp.innerHTML = dayOfWeek + "<br>" + date + "<br>" + "<span>" + Math.round(minTemp) + "° min" + 
+                        Math.round(maxTemp) + "° max" + "</span>";
+                        firstSection.appendChild(cardDayandTemp);
+
+                        const secondSection = document.createElement("section");
+                        secondSection.id = "card-body";
+                        ulList.appendChild(secondSection);
 
                         const humidity = day.humidity;
                         const humid = document.createElement("li");
                         humid.className = "humidity";
-                        humid.innerHTML = humidity + "% humidity";
-                        ulList.appendChild(humid);
-
-                        const windSpeed = day.wind_speed;
-                        const windSp = document.createElement("li");
-                        windSp.className = "wind-speed";
-                        windSp.innerHTML = windSpeed + "km/h wind";
-                        ulList.appendChild(windSp);
-
-                        const windDirectionDegree = day.wind_deg;
-                        const windDirection= document.createElement("li");
-                        windDirection.className = "wind-direction";
-                        windDirection.innerHTML = windDirectionDegree + "wind.d.";
-                        ulList.appendChild(windDirection);
+                        humid.innerHTML = "Humidity" + humidity + "%";
+                        secondSection.appendChild(humid);
 
                         const precipitationProb = day.pop;
                         const precipitationPr= document.createElement("li");
                         precipitationPr.className = "precipitation-prob";
-                        precipitationPr.innerHTML = precipitationProb + "%" + " precip. Prob.";
-                        ulList.appendChild(precipitationPr);
+                        precipitationPr.innerHTML = "Rain" + precipitationProb + "%";
+                        secondSection.appendChild(precipitationPr);
+
+                        const windSpeed = day.wind_speed;
+                        const windSp = document.createElement("li");
+                        windSp.className = "wind-speed";
+                        windSp.innerHTML = "Wind" + windSpeed + " km/h";
+                        secondSection.appendChild(windSp);
+
+                        const windDirectionDegree = day.wind_deg;
+                        const windDirection= document.createElement("li");
+                        windDirection.className = "wind-direction";
+                        windDirection.innerHTML = "Wind.d." + windDirectionDegree;
+                        secondSection.appendChild(windDirection);
                     }
                 })
             

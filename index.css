@@ -6,20 +6,33 @@
 body {
   width: 100vw;
   height: 100vh;
-  /*background-image: url("./images/nature-background.jpg");*/
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("");
+  opacity: 0.8;
 }
-.form {
-  line-height: 30px;
+
+.label {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
 }
-.daily {
+
+#card {
+  padding-top: 10px;
+}
+
+.daily-card {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   list-style-type: none;
   border-style: solid;
   border-radius: 25px;
+  margin-bottom: 10px;
 }
-#header {
+
+#card-head {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,13 +49,46 @@ body {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
 }
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
 .day {
   padding-right: 8px;
+  font-weight: bold;
 }
+
 .temp {
   line-height: 30px;
 }
-#body {
+
+#card-body {
   padding-left: 8px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+@media only screen and (min-width: 425px){
+  #card {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+  .form {
+    width: 80%;
+    margin: auto;
+  }
+  .daily-card {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    list-style-type: none;
+    border-style: solid;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
 }

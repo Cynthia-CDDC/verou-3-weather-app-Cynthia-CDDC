@@ -2,25 +2,36 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     /*background-image: url("./images/nature-background.jpg");*/
 }
-.daily {
+.label {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#card {
+    padding-top: 10px;
+}
+.daily-card {
     width: fit-content;
     list-style-type: none;
     border-style: solid;
     border-radius: 25px;
-    padding-right: 25px;
 }
-#header {
+#card-head {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: nowrap;
+}
+.icon {
+    width: 80px;
+    height: 80px;
 }
 .day {
     padding-right: 8px;
@@ -28,7 +39,7 @@ body {
 .temp {
     line-height: 30px;
 }
-#body {
-    padding-left: 25px;
+#card-body {
+    padding-left: 8px;
     padding-bottom: 20px;
 }
