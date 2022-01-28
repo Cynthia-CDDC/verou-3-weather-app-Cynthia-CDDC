@@ -17,6 +17,7 @@ body {
   padding-bottom: 5px;
   font-weight: bold;
   color:rgb(37, 37, 37);
+  font-family: Cambria, sans-serif;
 }
 #cityfield {
   border-width: 3px;
@@ -25,17 +26,16 @@ body {
   font-weight: bold;
   border-radius: 25px;
   padding: 4px;
+  font-family: Cambria, sans-serif;
 }
 #submitcity {
   padding: 4px;
   border-radius: 25px;
   color:rgb(37, 37, 37);
   font-weight: bold;
+  font-family: Cambria, sans-serif;
 }
 #card {
-  /* display: flex;
-  flex: column;
-  flex-wrap: wrap; */
   width: 95%;
   padding-top: 10px;
 }
@@ -52,6 +52,7 @@ body {
   background: rgb(196, 214, 245, 0.8);
   font-weight: bold;
   color: rgb(37, 37, 37);
+  font-family: Cambria, sans-serif;
 }
 #card-head {
   display: -webkit-box;
@@ -81,6 +82,9 @@ body {
   line-height: 30px;
 }
 #card-body {
+  display: flex;
+  flex-direction: column;
+  
   padding-left: 8px;
   padding-bottom: 20px;
 }
