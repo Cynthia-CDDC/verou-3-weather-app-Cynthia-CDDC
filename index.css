@@ -2,36 +2,57 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   width: 100vw;
   height: 100vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-image: url("");
-  opacity: 0.8;
+  background-image: url("./images/nature-background.jpg");
 }
-
+.form {
+  margin: 10px;
+}
 .label {
   padding-top: 5px;
   padding-bottom: 5px;
   font-weight: bold;
+  color:rgb(37, 37, 37);
 }
-
+#cityfield {
+  border-width: 3px;
+  border-color: rgb(196, 214, 245, 0.5);
+  color:rgb(37, 37, 37);
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 4px;
+}
+#submitcity {
+  padding: 4px;
+  border-radius: 25px;
+  color:rgb(37, 37, 37);
+  font-weight: bold;
+}
 #card {
+  /* display: flex;
+  flex: column;
+  flex-wrap: wrap; */
+  width: 95%;
   padding-top: 10px;
 }
-
 .daily-card {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   list-style-type: none;
-  border-style: solid;
+  border-style:none;
   border-radius: 25px;
+  margin: 10px;
+  margin: auto;
   margin-bottom: 10px;
+  background: rgb(196, 214, 245, 0.8);
+  font-weight: bold;
+  color: rgb(37, 37, 37);
 }
-
 #card-head {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,37 +70,43 @@ body {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
 }
-
 .icon {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
-
 .day {
   padding-right: 8px;
-  font-weight: bold;
 }
-
 .temp {
   line-height: 30px;
 }
-
 #card-body {
   padding-left: 8px;
   padding-bottom: 20px;
-  font-weight: bold;
 }
-@media only screen and (min-width: 425px){
+@media only screen and (min-width: 283px){
+  #card {
+    display: flex;
+    flex: row;
+    flex-wrap: wrap;
+    width: 95%;
+    padding-top: 10px;
+    margin: auto;
+  } 
+  .daily-card {
+    margin-left: 0px;
+  }
+}
+@media only screen and (min-width: 420px){
+  .form {
+    width: 80%;
+    margin: auto;
+  }
   #card {
     display: flex;
     flex-direction: row;
     width: 80%;
-    margin: auto;
     flex-wrap: wrap;
-  }
-  .form {
-    width: 80%;
-    margin: auto;
   }
   .daily-card {
     width: -webkit-fit-content;
@@ -90,5 +117,11 @@ body {
     border-radius: 25px;
     margin-bottom: 10px;
     margin-right: 10px;
+    border-style: none;
+    margin-left: 0px;
+  }
+  .icon {
+    width: 80px;
+    height: 80px;
   }
 }

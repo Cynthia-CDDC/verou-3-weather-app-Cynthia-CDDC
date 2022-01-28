@@ -12,7 +12,6 @@ const handleForm = (event) => {
     while (mainParent.firstChild) {
         mainParent.removeChild(mainParent.firstChild);
     }
-    event.preventDefault();
     // Geocode API call to get the coordinates needed for weather API
     const getCoordinates = fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +form.value + "&appid=" + Data.key)
         .then(response => {
@@ -68,8 +67,8 @@ const handleForm = (event) => {
 
                         const cardDayandTemp = document.createElement("li");
                         cardDayandTemp.className = "day";
-                        cardDayandTemp.innerHTML = dayOfWeek + "<br>" + date + "<br>" + "<span>" + Math.round(minTemp) + "° min" + 
-                        Math.round(maxTemp) + "° max" + "</span>";
+                        cardDayandTemp.innerHTML = dayOfWeek + "<br>" + date + "<br>" + "<span>" + Math.round(minTemp) + "°/ " + 
+                        Math.round(maxTemp) + "°" + "</span>";
                         firstSection.appendChild(cardDayandTemp);
 
                         const secondSection = document.createElement("section");
@@ -79,25 +78,25 @@ const handleForm = (event) => {
                         const humidity = day.humidity;
                         const humid = document.createElement("li");
                         humid.className = "humidity";
-                        humid.innerHTML = "Humidity" + humidity + "%";
+                        humid.innerHTML = "Humidity " + humidity + "%";
                         secondSection.appendChild(humid);
 
                         const precipitationProb = day.pop;
                         const precipitationPr= document.createElement("li");
                         precipitationPr.className = "precipitation-prob";
-                        precipitationPr.innerHTML = "Rain" + precipitationProb + "%";
+                        precipitationPr.innerHTML = "Rain " + precipitationProb + "%";
                         secondSection.appendChild(precipitationPr);
 
                         const windSpeed = day.wind_speed;
                         const windSp = document.createElement("li");
                         windSp.className = "wind-speed";
-                        windSp.innerHTML = "Wind" + windSpeed + " km/h";
+                        windSp.innerHTML = "Wind " + Math.round(windSpeed) + " km/h";
                         secondSection.appendChild(windSp);
 
                         const windDirectionDegree = day.wind_deg;
                         const windDirection= document.createElement("li");
                         windDirection.className = "wind-direction";
-                        windDirection.innerHTML = "Wind.d." + windDirectionDegree;
+                        windDirection.innerHTML = "Wind.d. " + windDirectionDegree;
                         secondSection.appendChild(windDirection);
                     }
                 })
@@ -105,3 +104,13 @@ const handleForm = (event) => {
         })
 }
 submitBtn.addEventListener('click', handleForm);
+
+const pressEnter = (event) => {
+    const pressedKey = event.key;
+    console.log(pressedKey);
+    if (pressedKey == "Enter") {
+        handleForm();
+    };
+}
+form.addEventListener('keydown', pressEnter);
+
