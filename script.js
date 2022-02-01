@@ -1,9 +1,6 @@
-//TODO: make webpage responsive
-//TODO: add style and design to page
-import Data from "./config.js";
+// import Data from "./config.js";
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const form = document.querySelector(".cityfield");
-console.log(form)
 const submitBtn = document.querySelector("#submitcity");
 // Add city for API call
 const handleForm = (event) => {
@@ -13,23 +10,19 @@ const handleForm = (event) => {
         mainParent.removeChild(mainParent.firstChild);
     }
     // Geocode API call to get the coordinates needed for weather API
-    const getCoordinates = fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +form.value + "&appid=" + Data.key)
+    const getCoordinates = fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +form.value + "&appid=a790165930e5b592de2330f642ceff0c")
         .then(response => {
-            console.log(response);
             return response.json();
         })
         .then(data => {
             const latitude = data[0].lat;
             const longitude = data[0].lon;
             //API call with coordinates
-            const getWeatherData = fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+ latitude + "&lon=" + longitude + "&units=metric" + "&appid=" + Data.key)
+            const getWeatherData = fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+ latitude + "&lon=" + longitude + "&units=metric" + "&appid=a790165930e5b592de2330f642ceff0c")
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data)// the whole data fetched from the API.
+                .then(data => {// data = the whole data fetched from the API.
                     const dailyWeather8 = data.daily;//array of 8 objects. Objects are the weatherinfo per day.
-                    console.log(dailyWeather8)
                     const dailyWeather5 = dailyWeather8.slice(0, 5);//takes the first 5 objects of the array above starting from position 0.
-                    console.log(dailyWeather5)
 
                     const mainHtml = document.querySelector('#card');
                     
@@ -56,10 +49,8 @@ const handleForm = (event) => {
 
                         const unixDate = day.dt;
                         const dateJSconversion = new Date(unixDate*1000);
-                        console.log(dateJSconversion.getDay());
                         const weekDay = dateJSconversion.getDay();
                         const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
-                        console.log(dateDDMMYY)
                         const dayOfWeek = weekdays[weekDay];
                         const date = dateDDMMYY;
                         const minTemp = day.temp.min;
@@ -107,10 +98,8 @@ submitBtn.addEventListener('click', handleForm);
 
 const pressEnter = (event) => {
     const pressedKey = event.key;
-    console.log(pressedKey);
     if (pressedKey == "Enter") {
         handleForm();
     };
 }
 form.addEventListener('keydown', pressEnter);
-
