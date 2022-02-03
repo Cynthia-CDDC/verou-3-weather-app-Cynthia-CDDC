@@ -1,3 +1,5 @@
+import {fetchCoordinates} from './coordinates.js';
+
 // import Data from "./config.js";
 
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -10,7 +12,6 @@ const pressEnter = (event) => {
         handleForm();
     };
 }
-
 // Add city for API call
 const handleForm = (event) => {
     //to only display the new data, remove childelement(ul) from parenthtml element
@@ -21,20 +22,6 @@ const handleForm = (event) => {
     // Geocode API call to get the coordinates needed for weather API
     fetchCoordinates(form.value);
 }
-              
-const fetchCoordinates = (inputCity) => {// const inputCity = form.value
-    const getCoordinates = fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +inputCity + "&appid=a790165930e5b592de2330f642ceff0c")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            const latitude = data[0].lat;
-            const longitude = data[0].lon;
-            //API call with coordinates
-            fetchWeatherData(latitude, longitude); //refers to the function fetchWeatherData
-        })
-}
-
 const fetchWeatherData = (lat, long) => {
     const getWeatherData = fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + long + "&units=metric" + "&appid=a790165930e5b592de2330f642ceff0c")
         .then(response => response.json())
@@ -48,7 +35,7 @@ const fetchWeatherData = (lat, long) => {
             }
         })
 }
-
+              
 // function pre-creating html elements
 const createElement = (tagN, idN, classN, source, innerHtml, parent) => {
     const tagName = document.createElement(tagN);
@@ -104,6 +91,8 @@ const createDay = (mainHtml, day) => {
 submitBtn.addEventListener('click', handleForm);
 
 form.addEventListener('keydown', pressEnter);
+
+export {fetchWeatherData};
 
  //TODO: try with html template literal. Don't forget ; after closing backtick?
 //TODO: transform wind-degrees in compass (letters)
