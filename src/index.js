@@ -11,10 +11,10 @@ const pressEnter = (event) => {
     const pressedKey = event.key;
     if (pressedKey == "Enter") {
         handleForm();
-    };
+    }
 }
 // Add city for API call
-const handleForm = (event) => {
+const handleForm = () => {
     //to only display the new data, remove childelement(ul) from parenthtml element
     let mainParent = document.querySelector('#card');
     while (mainParent.firstChild) {
@@ -24,7 +24,7 @@ const handleForm = (event) => {
     fetchCoordinates(form.value);
 }
 const fetchWeatherData = (lat, long) => {
-    const getWeatherData = fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + long + "&units=metric" + "&appid=a790165930e5b592de2330f642ceff0c")
+    fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + long + "&units=metric" + "&appid=a790165930e5b592de2330f642ceff0c")
         .then(response => response.json())
         .then(data => {// data = the whole data fetched from the API.
             console.log(data)
@@ -58,10 +58,13 @@ const createDay = (mainHtml, day) => {
     const unixDate = day.dt;
     const dateJSconversion = new DateTime(unixDate*1000);
     console.log(dateJSconversion);
-    console.log(DateTime.now().ts);
-    const weekDay = dateJSconversion.getDay();
-    const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
+    const weekDay = dateJSconversion.getDay;
+    console.log(weekDay)
+    const dateDDMMYY = dateJSconversion.setLocale('en-BE').toLocaleString();
+
     const dayOfWeek = weekdays[weekDay];
+    console.log(dayOfWeek);
+
     const date = dateDDMMYY;
     const minTemp = day.temp.min;
     const maxTemp = day.temp.max;
@@ -70,24 +73,23 @@ const createDay = (mainHtml, day) => {
     const ulList = createElement('ul', null, 'daily-card','', '', mainHtml);
 
     const firstSection = createElement('section', 'card-head', '', '', '', ulList);
-
     
     const iconLi = createElement('li', '', 'weather-icon','', '', firstSection);
     
-    const iconImg = createElement('img', '', 'icon', "http://openweathermap.org/img/wn/" + weatherIcon +"@2x.png", '', iconLi);
+    createElement('img', '', 'icon', "http://openweathermap.org/img/wn/" + weatherIcon +"@2x.png", '', iconLi);
     
-    const cardDayandTemp = createElement('li', '', 'day', '', dayOfWeek + "<br>" + date + "<br>" + "<span>" + Math.round(minTemp) + 
+    createElement('li', '', 'day', '', dayOfWeek + "<br>" + date + "<br>" + "<span>" + Math.round(minTemp) + 
     "°/ " + Math.round(maxTemp) + "°" + "</span>", firstSection);
 
     const secondSection = createElement('section', 'card-body', '', '', '', ulList);
 
-    const humid = createElement('li', '', 'humidity', '',"Humidity " + humidity + "%", secondSection);
+    createElement('li', '', 'humidity', '',"Humidity " + humidity + "%", secondSection);
 
-    const precipitationPr = createElement('li', '', 'precipitation-prob', '', "Rain " + precipitationProb + "%", secondSection);
+    createElement('li', '', 'precipitation-prob', '', "Rain " + precipitationProb + "%", secondSection);
 
-    const windSp = createElement('li', '', 'wind-speed', '', "Wind " + Math.round(windSpeed) + " km/h", secondSection);
+    createElement('li', '', 'wind-speed', '', "Wind " + Math.round(windSpeed) + " km/h", secondSection);
 
-    const windDirection = createElement('li', '', 'wind-direction', '', "Wind.d. " + windDirectionDegree, secondSection);
+    createElement('li', '', 'wind-direction', '', "Wind.d. " + windDirectionDegree, secondSection);
 }
 // event listeners are the start of the whole operation, needs to be below. 
 // Then display from top to bottom in order of occurrence the steps needed to produce final browser result.

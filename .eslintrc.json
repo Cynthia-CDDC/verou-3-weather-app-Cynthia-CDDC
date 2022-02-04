@@ -9,5 +9,8 @@
         "sourceType": "module"
     },
     "rules": {
+        "no-extra-semi": "off",
+        "no-mixed-spaces-and-tabs": "off",
+        "no-unexpected-multiline": "off"
     }
 }
