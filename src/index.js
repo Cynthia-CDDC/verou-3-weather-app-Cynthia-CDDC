@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import {fetchCoordinates} from './coordinates.js';
 
 // import Data from "./config.js";
@@ -55,7 +56,9 @@ const createDay = (mainHtml, day) => {
     const precipitationProb = day.pop;
     const humidity = day.humidity;
     const unixDate = day.dt;
-    const dateJSconversion = new Date(unixDate*1000);
+    const dateJSconversion = new DateTime(unixDate*1000);
+    console.log(dateJSconversion);
+    console.log(DateTime.now().ts);
     const weekDay = dateJSconversion.getDay();
     const dateDDMMYY = dateJSconversion.toLocaleDateString("en-BE");
     const dayOfWeek = weekdays[weekDay];
