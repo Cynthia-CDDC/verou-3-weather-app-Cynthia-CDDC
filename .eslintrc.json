@@ -1,16 +1,16 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-extra-semi": "off",
-        "no-mixed-spaces-and-tabs": "off",
-        "no-unexpected-multiline": "off"
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-extra-semi": "off",
+    "no-mixed-spaces-and-tabs": "off",
+    "no-unexpected-multiline": "off"
+  }
 }

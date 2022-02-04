@@ -6,7 +6,7 @@ body {
   width: 100vw;
   height: 100vh;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background-image: url("./images/nature-background.jpg");
 }
 .form {
@@ -16,13 +16,13 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
   font-weight: bold;
-  color:rgb(37, 37, 37);
+  color: rgb(37, 37, 37);
   font-family: Cambria, sans-serif;
 }
 #cityfield {
   border-width: 3px;
   border-color: rgb(196, 214, 245, 0.5);
-  color:rgb(37, 37, 37);
+  color: rgb(37, 37, 37);
   font-weight: bold;
   border-radius: 25px;
   padding: 4px;
@@ -31,7 +31,7 @@ body {
 #submitcity {
   padding: 4px;
   border-radius: 25px;
-  color:rgb(37, 37, 37);
+  color: rgb(37, 37, 37);
   font-weight: bold;
   font-family: Cambria, sans-serif;
 }
@@ -47,7 +47,7 @@ body {
   width: -moz-fit-content;
   width: fit-content;
   list-style-type: none;
-  border-style:none;
+  border-style: none;
   border-radius: 25px;
   margin: 10px;
   margin: auto;
@@ -63,16 +63,16 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 .icon {
   width: 60px;
@@ -91,7 +91,7 @@ body {
   padding-left: 8px;
   padding-bottom: 20px;
 }
-@media only screen and (min-width: 283px){
+@media only screen and (min-width: 283px) {
   #card {
     display: flex;
     flex: row;
@@ -99,12 +99,12 @@ body {
     width: 95%;
     padding-top: 10px;
     margin: auto;
-  } 
+  }
   .daily-card {
     margin-left: 0px;
   }
 }
-@media only screen and (min-width: 420px){
+@media only screen and (min-width: 420px) {
   .form {
     width: 80%;
     margin: auto;
